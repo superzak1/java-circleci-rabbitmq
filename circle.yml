@@ -1,0 +1,27 @@
+machine:
+  timezone:
+    America/New_York
+
+  java:
+    version: oraclejdk8
+
+  services:
+    - rabbitmq-server
+
+  environment:
+    AMQP_URL: amqp://127.0.0.1:5432
+
+dependencies:
+  override:
+    - mvn install -DskipTests
+
+general:
+  branches:
+    only:
+      - master
+      - develop
+
+test:
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
