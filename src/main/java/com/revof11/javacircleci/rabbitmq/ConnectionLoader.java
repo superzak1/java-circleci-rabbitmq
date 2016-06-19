@@ -21,11 +21,12 @@ import java.util.concurrent.TimeoutException;
  *
  * <br /><br />
  *
- * We accept either an environment variable of {@code AMQP_URL} to hold the data or
- * a Java property value of {@code env.AMQP_URL} (in that order of precedence).  If
- * we do not find anything, then we throw a basic {@code RuntimeException} with a
- * basic error message that indicates we were unable to find the configuration.  We
- * then create a {@link Connection} using the standard client setup.
+ * We accept either an environment variable of {@code AMQP_URL}/{@code RABBITMQ_URL}
+ * to hold the data or a Java property value of {@code env.AMQP_URL}/{@code env.RABBITMQ_URL}
+ * (in that order of precedence).  If we do not find anything, then we throw a basic
+ * {@code RuntimeException} with a basic error message that indicates we were unable
+ * to find the configuration.  We then create a {@link Connection} using the
+ * standard client setup.
  */
 public class ConnectionLoader {
 
@@ -43,7 +44,9 @@ public class ConnectionLoader {
     LOG.info("Executing lookup of RabbitMQ configuration from environment");
 
     String uri = System.getenv("AMQP_URL");
+    uri = StringUtils.isBlank(uri) ? System.getenv("RABBITMQ_URL") : uri;
     uri = StringUtils.isBlank(uri) ? System.getProperty("env.AMQP_URL") : uri;
+    uri = StringUtils.isBlank(uri) ? System.getProperty("env.RABBITMQ_URL") : uri;
     if (StringUtils.isBlank(uri)) {
       throw new RuntimeException("Unable to find RabbitMQ configuration.");
     }

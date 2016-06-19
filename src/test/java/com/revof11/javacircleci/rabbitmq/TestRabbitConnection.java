@@ -10,6 +10,8 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeoutException;
@@ -34,7 +36,8 @@ public class TestRabbitConnection {
     description = "Lists the environment variables for CircleCI."
   )
   public void testEnvironmentVariables() {
-    System.getenv().entrySet().forEach(entry -> {
+    Comparator<Map.Entry<String, String>> comparator = (e1, e2) -> e1.getKey().compareToIgnoreCase(e2.getKey());
+    System.getenv().entrySet().stream().sorted(comparator).forEach(entry -> {
       String key = entry.getKey();
       String value = entry.getValue();
       LOG.info(String.format("Environment Variable : %-24s : %-24s", key, value));
