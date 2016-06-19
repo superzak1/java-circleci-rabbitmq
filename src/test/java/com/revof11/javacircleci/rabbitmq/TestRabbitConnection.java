@@ -28,10 +28,25 @@ public class TestRabbitConnection {
   private static final Logger LOG = LoggerFactory.getLogger(TestRabbitConnection.class);
 
   /**
+   * Lists the environment variables for CircleCI.
+   */
+  @Test (
+    description = "Lists the environment variables for CircleCI."
+  )
+  public void testEnvironmentVariables() {
+    System.getenv().entrySet().forEach(entry -> {
+      String key = entry.getKey();
+      String value = entry.getValue();
+      LOG.info(String.format("Environment Variable : %-24s : %-24s", key, value));
+    });
+  }
+
+  /**
    * Tests the core of the processing.
    * @throws Exception if anything goes horribly wrong
    */
   @Test (
+    dependsOnMethods = {"testEnvironmentVariables"},
     description = "Tests the core of the processing."
   )
   public void testCore() throws Exception {

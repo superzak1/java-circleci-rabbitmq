@@ -45,7 +45,7 @@ public class ConnectionLoader {
     String uri = System.getenv("AMQP_URL");
     uri = StringUtils.isBlank(uri) ? System.getProperty("env.AMQP_URL") : uri;
     if (StringUtils.isBlank(uri)) {
-      throw new RuntimeException("Unable to find data store configuration.");
+      throw new RuntimeException("Unable to find RabbitMQ configuration.");
     }
 
     // create and return the connection
