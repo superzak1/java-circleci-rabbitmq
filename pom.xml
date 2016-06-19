@@ -6,7 +6,7 @@
 
   <groupId>com.revof11</groupId>
   <artifactId>java-circleci-rabbitmq</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
 
   <name>Java CircleCI with RabbitMQ</name>
