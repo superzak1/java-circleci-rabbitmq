@@ -9,7 +9,7 @@ machine:
     - rabbitmq-server
 
   environment:
-    AMQP_URL: $RABBITMQ_URL
+    AMQP_URL: amqp://localhost:5672
 
 dependencies:
   override:
