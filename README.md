@@ -37,7 +37,7 @@ your machine (unless you really want to, I prefer Docker to keep my machine nice
 clean).  You can build it yourself or run it from my [Hub](https://hub.docker.com/r/revof11/)
 account.  To just run it yourself, just do this:
  
-1. Run Docker:  `docker run -ti -p 15672:15672 -p 5672:5672 revof11/java-cricleci-rabbitmq`
+1. Run Docker:  `docker run -ti -p 15672:15672 -p 5672:5672 revof11/java-circleci-rabbitmq`
 2. Use the instructions below (I have the IP in there that I get from the Docker terminal)
 3. Celebrate
 
